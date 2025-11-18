@@ -8,9 +8,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places" defer></script>
   <script src="script.js" defer></script>
+  <script src="location.js" defer></script>
 </head>
 <body>
-
   <header>
     <div class="logo">Bharat Movers</div>
     <nav>
@@ -20,12 +20,10 @@
         <li><a href="#" id="locationLink">Location</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+        <div class="menu-toggle" id="menuToggle">
+         <div></div><div></div><div></div>
+       </div>
     </nav>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
   </header>
 
   <div class="vehicle-modal hidden" id="vehicleModal" aria-hidden="true">
@@ -54,7 +52,6 @@
       <button class="close-btn" id="closeLocation" aria-label="Close">&times;</button>
       <h2 id="locationTitle">Select Location</h2>
       <div id="stateButtons" class="vehicle-types"></div>
-
       <div id="cityList" class="hidden">
         <h3 id="selectedState"></h3>
         <div id="citiesContainer" class="v-items"></div>
@@ -68,10 +65,10 @@
       <p>𝑭𝒂𝒔𝒕, 𝑺𝒂𝒇𝒆 & 𝑨𝒇𝒇𝒐𝒓𝒅𝒂𝒃𝒍𝒆 𝑳𝒐𝒂𝒅𝒊𝒏𝒈 𝒂𝒏𝒅 𝑻𝒓𝒂𝒗𝒆𝒍 𝑺𝒆𝒓𝒗𝒊𝒄𝒆𝒔</p>
    </div>
    <div class="hero-right">
-      <div class="booking-box" role="form" aria-label="Book vehicle transport">
+      <div class="booking-box" id="bookingBox"  role="form" aria-label="Book vehicle transport">
         <h3>Book Vehicle Transport</h3>
-        <input type="text" id="pickup" placeholder="Pickup City / Location" autocomplete="off">
-        <input type="text" id="delivery" placeholder="Delivery City / Location" autocomplete="off">
+        <div class="input-group"><input type="text" id="pickup" placeholder="Pickup City / Location" autocomplete="off"></div>
+        <div class="input-group"><input type="text" id="delivery" placeholder="Delivery City / Location" autocomplete="off"></div>
         <button id="bookNowBtn">Book Now</button>
      </div>
    </div>
@@ -98,37 +95,82 @@
    </div>
   </section>
 
-  <section class="customers">
-    <h2>Our Beloved Customers</h2>
-    <div class="customer-logos">
-      <img src="zomato.png" alt="Zomato" />
-      <img src="blinkit.png" alt="Blinkit" />
-      <img src="swiggy.png" alt="Swiggy" />
-    </div>
-  </section>
+ <section class="card-container">
+   <div class="service-card">
+     <div class="service-card-inner">
+       <div class="service-card-front">
+         <i class="fas fa-truck-moving"></i>
+         <p>Hire Truck</p>
+       </div>
+       <div class="service-card-back">      
+          <h3>About :</h3>
+          <p>आपका सामान सुरक्षित और तेज़ी से पहुंचाने वाली आसान और विश्वसनीय ट्रक बुकिंग सेवा।</p>
+          <h5>"आपका भरोसेमंद सामान साथी।"</h5>
+          <p>सुरक्षित और तेज़ डिलीवरी, हर बार, हर जगह।</p>
+       </div>
+     </div>
+   </div>
+   <div class="service-card">
+     <div class="service-card-inner">
+       <div class="service-card-front">
+         <i class="fas fa-road"></i>
+         <p>Transport Services</p>
+       </div>
+       <div class="service-card-back">      
+          <h3>About :</h3>
+          <p>ग्राहक आसानी से अपने सामान के परिवहन के लिए विभिन्न प्रकार के ट्रक बुक कर सकते हैं।</p>
+          <h4 id="cityCount">1800+</h4><p>Cities</p>
+          <h4 id="truckCount">100+</h4><p>Trucks</p>
+       </div>
+     </div>
+   </div>
+   <div class="service-card">
+     <div class="service-card-inner">
+       <div class="service-card-front">
+          <i class="fas fa-people-carry"></i>
+          <p>Transporter</p>  
+       </div>
+       <div class="service-card-back">      
+          <h3>About :</h3>
+          <p>“Bharat Movers के साथ आज ही जुड़ें और तुरंत सुरक्षित ट्रांसपोर्ट पाएं!”</p>
+          <h4 id="HappyCustomersCount">900+</h4><p>Happy Customers</p>
+          <h4 id="TripsCompletedCount">1200+</h4><p>Trips Completed</p>
+       </div>
+     </div>
+   </div>
+   <div class="service-card">
+     <div class="service-card-inner">
+       <div class="service-card-front">
+          <i class="fas fa-car-side"></i>
+          <p>Type Vehicle</p>
+       </div>
+       <div class="service-card-back">      
+          <h3>About :</h3>
+          <p>“Bharat Movers पर <em>60+ प्रकार के ट्रक उपलब्ध हैं</em>, और <em>687+ वाहन मालिक हमारे साथ जुड़ चुके हैं।”</em></p><br>
+          <h5 id="bookScrollBtn" style="cursor:pointer; color:#ff4500;">बस एक क्लिक में बुक करें!</h5>
+       </div>
+     </div>
+   </div>
+   <div class="service-card">
+     <div class="service-card-inner">
+       <div class="service-card-front">
+          <i class="fa-solid fa-location-dot"></i>
+          <p>location</p> 
+       </div>
+       <div class="service-card-back">      
+          <h3>About :</h3>
+          <p>“7000+ शहरों, इंडस्ट्री एरिया और गांवों में ट्रांसपोर्ट सर्विस available है।”</p><br>
+          <h5>“आपका साथ, हमारा विश्वास।”</h5>
+          <p><em>“Bharat Movers: </em>सभी शहरों तक भरोसेमंद ट्रांसपोर्ट सर्विस प्रदान करता है।”</p>
+       </div>
+     </div>
+   </div>
+ </section>
 
-  <section class="stats">
-    <h2>Online Vehicle Booking Across Top Cities</h2>
-    <p>We Are Growing Bigger Each Passing Day</p>
-    <div class="numbers">
-      <div><h3>110+</h3><p>Cities</p></div>
-      <div><h3>10121+</h3><p>Trucks</p></div>
-    </div>
-  </section>
-
-  <section class="love-section">
-    <h2>We Are Loved By Users And Clients</h2>
-    <div class="numbers">
-      <div><h3>5000+</h3><p>Happy Customers</p></div>
-      <div><h3>124562+</h3><p>Trips Completed</p></div>
-    </div>
-  </section>
-
-  <section class="cite-section">
+ <section class="cite-section">
     <h2>Top Cities</h2>
     <div class="city-grid">
       <div class="state-column">
-        <h3>Bihar</h3>
         <ul>
           <li>Patna</li>
           <li>Gaya</li>
@@ -137,7 +179,6 @@
         </ul>
       </div>
       <div class="state-column">
-        <h3>West Bengal</h3>
         <ul>
           <li>Kolkata</li>
           <li>Darjeeling</li>
@@ -148,7 +189,36 @@
     </div>
   </section>
 
-  <footer class="footer" id="contact">
+  <section class="how-section">
+    <h2>How it Works ?</h2><br><br>
+    <div class="steps">
+     <div class="step">
+       <div class="content">
+         <i class="fa-solid fa-headset"></i>
+         <p>1. Book Your Truck</p>
+         <p>Through Website, App & Call Center</p>
+       </div>
+     </div>
+     <div class="line dotted"></div>
+     <div class="step"><br>
+       <i class="fa-solid fa-truck-fast"></i>
+       <div class="content">
+          <p>2. Our Agent Finds</p>
+          <p>Nearest Truck For You</p>
+       </div>
+     </div>
+     <div class="line dotted"></div>
+     <div class="step">
+       <i class="fa-solid fa-envelope-open-text"></i>
+       <div class="content">
+          <p>3. Get Updates & Notifications</p>
+          <p>Via SMS, WhatsApp & Email</p>
+       </div>
+     </div>
+   </div>
+ </section>
+
+ <footer class="footer" id="contact">
     <div class="footer-box">
       <h3>About Us</h3>
       <p>Bharat Movers connects customers and vehicle owners with fast, safe, and affordable transport solutions nationwide.</p>
@@ -172,7 +242,6 @@
       </ul>
     </div>
   </footer>
-
   <div class="footer-bottom">
     <div class="social-icons" aria-hidden="true">
       <i class="fa-brands fa-facebook"></i>
@@ -182,6 +251,5 @@
     </div>
     <p>© 2025 Bharat Movers LLP("Your trust — our responsibility.")</p>
   </div>
-
 </body>
 </html>
