@@ -17,11 +17,13 @@
         <li><a href="#about">About</a></li>
         <li><a href="#" id="vehicleLink">Type Vehicle</a></li>
         <li><a href="#" id="locationLink">Location</a></li>
+        <li><a class="Account" id="createAccountBtn">Create Account</a></li>
+        <li><a class="Login" id="loginModalBtn">Login</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-        <div class="menu-toggle" id="menuToggle">
-         <div></div><div></div><div></div>
-       </div>
+      <div class="menu-toggle" id="menuToggle">
+        <div></div><div></div><div></div>
+      </div>
     </nav>
   </header>
   <div class="vehicle-modal hidden" id="vehicleModal" aria-hidden="true">
@@ -44,6 +46,56 @@
       </div>
     </div>
   </div>
+
+  <div id="accountModal" class="modal">
+    <div class="modal-contents"><br>
+      <h2>Create Account</h2>
+      <form id="accountForm">
+        <div class="field"><label>First Name*</label><input type="text" id="fname" required></div>
+        <div class="field"><label>Last Name</label><input type="text" id="lname"></div>
+        <div class="field"><label>Contact Number*</label><input type="tel" id="contact" maxlength="10" required></div>
+        <div class="field"><label>Email*</label><input type="email" id="email" required></div>
+        <div class="field"><label>Password*</label><input type="password" id="pass" minlength="8" maxlength="16" required></div>
+        <div class="field"><label>Confirm Password*</label><input type="password" id="cpass" required></div>
+        <div class="actions">
+          <button type="submit" id="submitBtn">Submit</button>
+          <button type="button" id="goLogin">Login</button>
+          <button type="button" id="backBtn">Back</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="loginModal" class="modal">
+    <div class="modal-contents"><br>
+      <h2>Login</h2><br>
+      <form id="loginForm">
+        <div class="field"><label>Email*</label><input type="email" id="loginEmail" required></div>
+        <div class="field"><label>Password*</label><input type="password" id="loginPassword" required></div>
+        <div class="actions">
+          <button type="submit">Login</button>
+          <button type="button" id="backLogin">Back</button>
+          <button type="button" id="forgotBtn">Forgot Password</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="forgotModal" class="modal">
+    <div class="modal-contents"><br>
+      <h2>Forgot Password</h2><br>
+      <form id="forgotForm">
+        <div class="field">
+          <label>Enter your registered email</label>
+          <input type="email" id="forgotEmail" required>
+        </div>
+        <div class="actions">
+          <button type="submit">Send Reset Link</button>
+          <button type="button" id="backForgot">Back</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <section class="hero" id="home">
     <div class="hero-left">
       <h1>“𝑨𝒇𝒇𝒐𝒓𝒅𝒂𝒃𝒍𝒆, 𝑺𝒂𝒇𝒆, 𝒂𝒏𝒅 𝑶𝒏-𝑻𝒊𝒎𝒆 𝑻𝒓𝒂𝒏𝒔𝒑𝒐𝒓𝒕𝒂𝒕𝒊𝒐𝒏.”</h1>
