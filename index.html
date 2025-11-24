@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places" defer></script>
   <script src="script.js" defer></script>
-  <script src="location.js" defer></script>
 </head>
 <body>
   <header>
@@ -25,7 +24,6 @@
        </div>
     </nav>
   </header>
-
   <div class="vehicle-modal hidden" id="vehicleModal" aria-hidden="true">
     <div class="vehicle-box" role="dialog" aria-modal="true" aria-labelledby="vehicleModalTitle">
       <button class="close-btn" id="closeVehicle" aria-label="Close">&times;</button>
@@ -34,7 +32,7 @@
       </div>
     </div>
   </div>
-
+  
   <div class="vehicle-modal hidden" id="vehicleDetailModal" aria-hidden="true">
     <div class="vehicle-box" role="dialog" aria-modal="true" aria-labelledby="vehicleTitle">
       <button class="close-btn" id="closeVehicleDetail" aria-label="Close">&times;</button>
@@ -46,20 +44,7 @@
       </div>
     </div>
   </div>
-
-  <div class="vehicle-modal hidden" id="locationModal" aria-hidden="true">
-    <div class="vehicle-box" role="dialog" aria-modal="true" aria-labelledby="locationTitle">
-      <button class="close-btn" id="closeLocation" aria-label="Close">&times;</button>
-      <h2 id="locationTitle">Select Location</h2>
-      <div id="stateButtons" class="vehicle-types"></div>
-      <div id="cityList" class="hidden">
-        <h3 id="selectedState"></h3>
-        <div id="citiesContainer" class="v-items"></div>
-      </div>
-    </div>
-  </div>
-
- <section class="hero" id="home">
+  <section class="hero" id="home">
     <div class="hero-left">
       <h1>“𝑨𝒇𝒇𝒐𝒓𝒅𝒂𝒃𝒍𝒆, 𝑺𝒂𝒇𝒆, 𝒂𝒏𝒅 𝑶𝒏-𝑻𝒊𝒎𝒆 𝑻𝒓𝒂𝒏𝒔𝒑𝒐𝒓𝒕𝒂𝒕𝒊𝒐𝒏.”</h1>
       <p>𝑭𝒂𝒔𝒕, 𝑺𝒂𝒇𝒆 & 𝑨𝒇𝒇𝒐𝒓𝒅𝒂𝒃𝒍𝒆 𝑳𝒐𝒂𝒅𝒊𝒏𝒈 𝒂𝒏𝒅 𝑻𝒓𝒂𝒗𝒆𝒍 𝑺𝒆𝒓𝒗𝒊𝒄𝒆𝒔</p>
@@ -67,33 +52,12 @@
    <div class="hero-right">
       <div class="booking-box" id="bookingBox"  role="form" aria-label="Book vehicle transport">
         <h3>Book Vehicle Transport</h3>
-        <div class="input-group"><input type="text" id="pickup" placeholder="Pickup City / Location" autocomplete="off"></div>
-        <div class="input-group"><input type="text" id="delivery" placeholder="Delivery City / Location" autocomplete="off"></div>
+        <input type="text" id="pickup" placeholder="Pickup City / Location" autocomplete="off">
+        <input type="text" id="delivery" placeholder="Delivery City / Location" autocomplete="off">
         <button id="bookNowBtn">Book Now</button>
      </div>
    </div>
  </section>
-
-  <section id="about" class="about-section">
-    <div class="container">
-      <h2 class="section-title">Bharat Movers — <span>“Your Goods, Our Responsibility.”</span></h2>
-      <p class="lead">
-        Everyone, at some point in life, lives away from home — for studies, a job, or business.
-        When it’s time to move houses or send goods to another place, finding a reliable transport service becomes the biggest challenge. 
-      </p>
-      <p>
-        <strong>Bharat Movers</strong> This is the smart solution to that problem. We are a…”
-        <em>“Digital Transport Platform”</em> “...that connects customers and vehicle owners — so that”<strong>“Booking, loading, unloading, and tracking”</strong>Everything can be done
-        <strong>In one click</strong>,That too in a safe and affordable way.
-     </p>
-     <ul class="features">
-        <li><i class="fa-solid fa-truck-fast"></i> Online booking of trucks, pickups, and mini-loaders.</li>
-        <li><i class="fa-solid fa-location-dot"></i> Live tracking and transparent pricing.</li>
-        <li><i class="fa-solid fa-shield-halved"></i>Safety policy and FIR assistance.</li>
-        <li><i class="fa-solid fa-box-open"></i> Professional assistance for loading and unloading.</li>
-      </ul>
-   </div>
-  </section>
 
  <section class="card-container">
    <div class="service-card">
@@ -188,7 +152,6 @@
       </div>
     </div>
   </section>
-
   <section class="how-section">
     <h2>How it Works ?</h2><br><br>
     <div class="steps">
@@ -244,10 +207,11 @@
   </footer>
   <div class="footer-bottom">
     <div class="social-icons" aria-hidden="true">
-      <i class="fa-brands fa-facebook"></i>
-      <i class="fa-brands fa-twitter"></i>
-      <i class="fa-brands fa-instagram"></i>
-      <i class="fa-solid fa-envelope-open"></i>
+      <a><i class="fa-brands fa-facebook"></i></a>
+      <a href=""><i class="fa-brands fa-twitter"></i></a>
+      <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+      <a href=""><i class="fa-brands fa-instagram"></i></a>
+      <a href=""><i class="fa-solid fa-envelope-open"></i></a>
     </div>
     <p>© 2025 Bharat Movers LLP("Your trust — our responsibility.")</p>
   </div>
