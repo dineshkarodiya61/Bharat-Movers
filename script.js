@@ -146,6 +146,57 @@ menuToggle.addEventListener("click", () => {
   navLinks.classList.toggle("active");
 });
 
+function togglePass(id, eye) {
+  let input = document.getElementById(id);
 
+  if (input.type === "password") {
+    input.type = "text";
+    eye.textContent = "🙈"; 
+  } else {
+    input.type = "password";
+    eye.textContent = "👁️"; 
+  }
+}
 
+function validatePasswords(id1, id2, errorId) {
+  let p = document.getElementById(id1);
+  let cp = document.getElementById(id2);
+  let msg = document.getElementById(errorId);
 
+  const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[%^&*()\-_\+={}|\;:"<>,./?$~!@#]).{8,16}$/;
+
+  if (p.value.trim() === "" || cp.value.trim() === "") {
+    msg.innerText = "";
+    return false;
+  }
+  if (!passRegex.test(p.value)) {
+    msg.innerText = "Password must be 8–16 chars, include UPPERCASE, lowercase, number & special char.";
+    msg.style.color = "red";
+    return false;
+  }
+  if (p.value !== cp.value) {
+    msg.innerText = " Password and Confirm Password must match!";
+    msg.style.color = "red";
+    return false;
+  }
+  msg.innerText = "Password valid!";
+  msg.style.color = "green";
+  return true;
+}
+document.getElementById("password").addEventListener("input", function () {
+  validatePasswords("password", "cpassword", "passError");
+});
+document.getElementById("cpassword").addEventListener("input", function () {
+  validatePasswords("password", "cpassword", "passError");
+});
+function togglePass(id, eye) {
+  let input = document.getElementById(id);
+
+  if (input.type === "password") {
+    input.type = "text";
+    eye.textContent = "👁️";  
+  } else {
+    input.type = "password";
+    eye.textContent = "👁️‍🗨️/"; 
+  }
+}
