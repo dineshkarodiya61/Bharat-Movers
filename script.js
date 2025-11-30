@@ -143,6 +143,10 @@ document.addEventListener("DOMContentLoaded", () => {
     resetBooking();
   });
 
+  function scrollModalTop() {
+    const modalContainer = document.querySelector('.bmodel');
+    modalContainer.scrollTop = 0; 
+  }
   next2.addEventListener("click", (e) => {
     e.preventDefault();
     if (itemtype.value === "") return itemtype.focus();
@@ -158,11 +162,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (imgUpload.files.length === 0) return imgUpload.focus();
     showStep(bstep3);
     activateBar(barStep3);
+    scrollModalTop();
   });
 
   back2.addEventListener("click", () => {
     showStep(bstep1);
     activateBar(barStep1);
+    scrollModalTop();
   });
 
   const REAL_OTP = "123456";
