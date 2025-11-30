@@ -41,6 +41,73 @@ nav ul li a {
 nav ul li a:hover { 
   color:#ffd700; 
 }
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+.menu-toggle div {
+  width: 28px;
+  height: 3px;
+  background: white;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+.modal-contents {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  width: 400px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  margin-top: 50px;
+  margin: auto;
+}
+.modal-contents h2 {
+  text-align: center;
+  color: green;
+}
+.field {
+  margin-bottom: 15px;
+}
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+.actions button {
+  flex: 1;
+  margin: 5px;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#forgotBtn { background-color: gray;color: black; }
+#submitBtn { background-color: #007bff; color: #fff; }
+#loginBtn { background-color: yellow; color: #fff; }
+#backBtn { background-color: gray; color: #000; }
+#submitBtn:hover { background-color: #22bb33; }
 
 .hero {
   display: flex;
@@ -111,114 +178,158 @@ nav ul li a:hover {
   position: relative;
   width: 100%;
 }
-.vehicle-modal { 
-  position:fixed; 
-  inset:0; 
-  display:flex; 
-  align-items:center; 
-  justify-content:center; 
-  background:rgba(0,0,0,0.55);
-  z-index: 999; 
-}
-.vehicle-box { 
-  background:#fff; 
-  padding:26px; 
-  border-radius:12px;
-  width:420px; 
-  position:relative; 
-  text-align: left;
-}
-.close-btn { 
-  position:absolute; 
-  right:12px; 
-  top:8px; 
-  background:transparent; 
-  border:none; 
-  font-size:22px; 
-  cursor:pointer; 
-  color:#004aad; 
-  font-weight:700;
-}
-.vehicle-types button, .v-items button{ 
-  padding: 8px 15px;
-  margin: 5px;
-  border: none;
-  background: #eee;
-  cursor: pointer;
-  border-radius: 6px;
-  display:flex; 
-  flex-direction:column; 
-  gap:10px; 
-  margin-top:14px; 
-}
-.v-item { 
-  background:#f1f3ff; 
-  color:#333c93; 
-}
-.vehicle-types button:hover { 
-  background:#658bcb; 
-}
-.v-item:hover { 
-  background:#d0d8ff; 
-}
 
-.modal {
+#bookingModal {
   display: none;
   position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
+  inset: 0;                  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 24, 30, 0.6); 
+  z-index: 9999;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+  box-sizing: border-box;
+}
+.bmodel {
   width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  max-width: 520px;   
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 18px 50px rgba(8, 15, 30, 0.35);
+  overflow: hidden;
+  padding: 28px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #0f1724;
+  box-sizing: border-box;
+  transform: translateY(0);
+}
+.progress-bar {
+  display: flex;
+  gap: 14px;
   justify-content: center;
   align-items: center;
+  margin-bottom: 22px;
 }
-.modal-contents {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 400px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  margin-top: 50px;
-  margin: auto;
+.step-indicator {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #eef2f7;
+  color: #475569;
+  display: inline-grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 15px;
+  border: 2px solid transparent;
+  transition: all 220ms ease;
 }
-.modal-contents h2 {
-  text-align: center;
-  color: green;
+.step-indicator.active {
+  background: linear-gradient(180deg,#0ea5a4,#0284c7);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(2,132,199,0.28);
+  transform: translateY(-3px);
+  border-color: rgba(2,132,199,0.12);
 }
-.field {
-  margin-bottom: 15px;
+.bstep h2 {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: #0b1220;
 }
-label {
+.bstep form {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+}
+.bstep label {
+  font-size: 13px;
+  color: #334155;
+  margin-bottom: 4px;
   display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-weight: 600;
 }
-input {
+.bstep select{
   width: 100%;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 10px 12px;
+  border: 1px solid #dbe6ef;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: box-shadow 160ms ease, border-color 160ms ease;
+  box-sizing: border-box;
 }
-.actions {
+.bstep input[type="file"] {
+  padding: 8px 10px;
+}
+.bstep input[placeholder] {
+  color: #94a3b8;
+}
+.otp-container {
   display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+  margin-top: 8px;
+  display: none; 
+}
+.otp-input {
+  width: 54px;
+  height: 54px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #fbfdff;
+  outline: none;
+}
+.btn-row {
+  display: flex;
+  gap: 12px;
   justify-content: space-between;
+  margin-top: 14px;
 }
-.actions button {
-  flex: 1;
-  margin: 5px;
-  padding: 8px;
-  border: none;
-  border-radius: 5px;
+.bstep button {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
   cursor: pointer;
+  border: none;
+  transition: transform 140ms ease, box-shadow 140ms ease;
 }
-#forgotBtn { background-color: gray;color: black; }
-#submitBtn { background-color: #007bff; color: #fff; }
-#loginBtn { background-color: yellow; color: #fff; }
-#backBtn { background-color: gray; color: #000; }
-#submitBtn:hover { background-color: #22bb33; }
 
+#next1, #next2, #bsubmitBtn, #sendOtp, #closebtn {
+  background: linear-gradient(180deg,#0ea5a4,#0284c7);
+  color: #fff;
+  box-shadow: 0 8px 26px rgba(2,132,199,0.14);
+  width: 48%;
+}
+.back-btn {
+  background: transparent;
+  background: linear-gradient(180deg,#1780bd,#0b8f98);
+  color: #a0a3aa;
+  border: 1px solid #e6eef6;
+  width: 48%;
+  box-shadow: none;
+}
+.bstep button:hover {
+  transform: translateY(-2px);
+}
+.bstep button:active {
+  transform: translateY(0);
+}
+#bstep4 {
+  text-align: center;
+}
+#bstep4 p {
+  margin-top: 6px;
+  color: #334155;
+  line-height: 1.5;
+}
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -271,40 +382,6 @@ transform: rotateY(180deg);
   padding: 20px;
   text-align: center;
 } 
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-}
-.menu-toggle div {
-  width: 28px;
-  height: 3px;
-  background: white;
-}
-.cite-section{
-  text-align:center;
-  padding:60px 40px; 
-  background:#141f29; 
-  color:white; 
-}
-.about-section { 
-  text-align:center; 
-  padding:60px 40px; 
-}
-.city-grid { 
-  display:flex; 
-  justify-content:center; 
-  gap:40px; 
-  flex-wrap:wrap; 
-}
-.citys{
-  display:flex; 
-  justify-content:center; 
-  gap:40px; 
-  flex-wrap:wrap; 
-  display: inline;
-}
 .how-section {
   text-align: center;
   padding: 40px 20px;
@@ -345,10 +422,9 @@ transform: rotateY(180deg);
   background:#092034; 
   color:#fff; 
   display:grid; 
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); 
-  gap:28px; padding:30px 40px; 
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); 
+  padding:40px 40px;
 }
-
 .footer h3 {
   color:#ff7b00; 
   margin-bottom:12px;
@@ -362,54 +438,59 @@ transform: rotateY(180deg);
   font-size:14px; 
 }
 .footer-bottom { 
-  background:#092034; 
-  color:#fff; 
+  background:#90add2; 
+  color:#686767; 
   text-align:center; 
   padding:14px 10px; 
-  font-size: 30px;
+  font-size: 20px;
+  margin-bottom: 0px;
 }
-.hidden { 
-  display:none !important; 
+.footer-bottom i{
+  color: #fff;
+  font-size: 29px;
 }
-.muted { 
-  color:#444; 
-}
-.cta { 
-  background:#ff7b00; 
-  border:none; 
-  color:#fff; 
-  padding:8px 12px; 
-  border-radius:8px; 
-  cursor:pointer; 
-  font-weight:600; 
+@media (max-width: 520px) {
+  .bmodel {
+    padding: 18px;
+    max-width: 420px;
+  }
+  .step-indicator {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+  .otp-input {
+    width: 46px;
+    height: 46px;
+    font-size: 18px;
+  }
+  .btn-row {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  #next1, #next2, #bsubmitBtn, #sendOtp, .back-btn {
+    width: 100%;
+  }
 }
 @media (max-width: 768px) {
-  nav ul {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background-color:#a5aab1; 
-    border-radius:8px; 
-    width: 200px;
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-    display:none; 
-    margin-right: 20px;
-  }
+   nav ul {
+      position: absolute;
+      top: 70px;
+      right: 0;
+      background-color:#a5aab1; 
+      border-radius:8px; 
+      width: 200px;
+      flex-direction: column;
+      gap: 15px;
+      padding: 20px;
+      display:none; 
+      margin-right: 20px;
+   }
   nav ul.active {
     display: flex;  
   }
   .menu-toggle {
     display: flex; 
-  }
-  .hero { 
-    padding:36px 20px; 
-    gap:20px; 
-  }
-  .booking-box {
-    width:100%; 
-    max-width:420px; 
   }
   .steps {
     flex-direction: column;
@@ -418,9 +499,4 @@ transform: rotateY(180deg);
   .step {
     width: 90%;
   }
-  .line {
-    display: none; 
-  }
 }
-
-

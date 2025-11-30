@@ -1,294 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bharat Movers | Easy Transport</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places" defer></script>
-  <script src="script.js" defer></script>
-</head>
-<body>
-  <header>
-    <div class="logo">Bharat Movers</div>
-    <nav>
-      <ul id="navList">
-        <li><a href="#about">About</a></li>
-        <li><a href="#" id="vehicleLink">Type Vehicle</a></li>
-        <li><a href="#" id="locationLink">Location</a></li>
-        <li><a class="Account" id="createAccountBtn">Create Account</a></li>
-        <li><a class="Login" id="loginModalBtn">Login</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <div class="menu-toggle" id="menuToggle">
-        <div></div><div></div><div></div>
-      </div>
-    </nav>
-  </header>
-  <div class="vehicle-modal hidden" id="vehicleModal" aria-hidden="true">
-    <div class="vehicle-box" role="dialog" aria-modal="true" aria-labelledby="vehicleModalTitle">
-      <button class="close-btn" id="closeVehicle" aria-label="Close">&times;</button>
-      <h2 id="vehicleModalTitle">Select Vehicle Type</h2>
-      <div class="vehicle-types" id="vehicleTypesContainer">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharth Moversh</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  </head>
+  <body>
+    <header> 
+        <div class="logo">Bharth Movers</div>
+        <nav>
+            <ul id="navList">
+                <li><a href="">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a>Type Vehicle</a></li>
+                <li><a>Location</a></li>
+                <li><a class="Account" id="createAccountBtn">Create Account</a></li>
+                <li><a class="Login" id="loginModalBtn">Login</a></li>
+                <li><a href="contact">Contact</a></li>
+                <li></li>
+            </ul>
+           <div class="menu-toggle" id="menuToggle">
+             <div></div><div></div><div></div>
+           </div>
+        </nav>
+   </header>
+
+    <div id="accountModal" class="modal">
+      <div class="modal-contents"><br>
+          <h2>Create Account</h2>
+          <form id="accountForm">
+              <label>First Name*</label>
+              <input type="text" id="fname" placeholder="Enter your name" required>
+              <label>Last Name</label>
+              <input type="text" id="lname" placeholder="Enter your name">
+              <label>Contact Number*</label>
+              <input type="tel" id="contact" maxlength="10" placeholder="10 digit Number" required>
+              <label>Email*</label>
+              <input type="email" id="email" placeholder="example@gmail.com" required>
+              <label>Password*</label>
+              <div style="position: relative;">
+                  <input type="password" id="password" placeholder="Enter Password" required>
+                  <span class="eye-btn" onclick="togglePass('password',this)" style="position:absolute; right:10px; top:10px; cursor:pointer;"> 👁️‍🗨️/ </span>
+              </div>
+              <label>Confirm Password*</label>
+              <div style="position: relative;">
+                  <input type="password" id="cpassword" placeholder="Confirm Password" required>
+                  <span class="eye-btn" onclick="togglePass('cpassword',this)" style="position:absolute; right:10px; top:10px; cursor:pointer;"> 👁️‍🗨️/ </span>
+              </div>
+              <div id="passError" style="color:red; margin: 5px 0;"></div>
+              <div class="actions">
+                  <button type="submit" id="submitBtn">Submit</button>
+                  <button type="button" id="goLogin">Login</button>
+                  <button type="button" id="backBtn">Back</button>
+              </div>
+          </form>
       </div>
     </div>
-  </div>
-  
-  <div class="vehicle-modal hidden" id="vehicleDetailModal" aria-hidden="true">
-    <div class="vehicle-box" role="dialog" aria-modal="true" aria-labelledby="vehicleTitle">
-      <button class="close-btn" id="closeVehicleDetail" aria-label="Close">&times;</button>
-      <h2 id="vehicleTitle">Vehicle Details</h2>
-      <p id="vehicleDescription" class="muted">Details about the selected vehicle will appear here.</p>
-      <ul id="vehicleSpecList" class="vehicle-list"></ul>
-      <div style="margin-top:12px;">
-        <button class="cta" id="bookThisVehicle">Book This Vehicle</button>
+    <div id="loginModal" class="modal">
+      <div class="modal-contents"><br>
+          <h2>Login</h2><br>
+          <form id="loginForm">
+              <div class="field">
+                  <label>Email*</label>
+                  <input type="email" id="loginEmail" required>
+              </div>
+              <div style="position: relative;">
+                  <label>Password*</label>
+                  <input type="password" id="loginPassword" placeholder="Password" required style="width:100%;">
+                  <span class="eye-btn" onclick="togglePass('loginPassword',this)" style="position:absolute; right:10px; top:35px; cursor:pointer;"> 👁️‍🗨️/</span>
+              </div>
+              <div class="actions">
+                 <button type="submit">Login</button>
+                 <button type="button" id="backLogin">Back</button>
+                 <button type="button" id="forgotBtn">Forgot Password</button>
+              </div>
+          </form>
       </div>
-    </div>
-  </div>
+   </div>
+   <div id="forgotModal" class="modal">
+      <div class="modal-contents"><br>
+          <h2>Forgot Password</h2><br>
+          <form id="forgotForm">
+              <div class="field">
+                  <label>Enter your registered email</label>
+                  <input type="email" id="forgotEmail" required>
+              </div>
+              <div class="actions">
+                  <button type="submit">Send Reset Link</button>
+                  <button type="button" id="backForgot">Back</button>
+              </div>
+          </form>
+      </div>
+   </div>
 
-  <div id="accountModal" class="modal">
-  <div class="modal-contents"><br>
-    <h2>Create Account</h2>
-    <form id="accountForm">
-      <label>First Name*</label>
-      <input type="text" id="fname" placeholder="Enter your name" required>
-      <label>Last Name</label>
-      <input type="text" id="lname" placeholder="Enter your name">
-      <label>Contact Number*</label>
-      <input type="tel" id="contact" maxlength="10" placeholder="10 digit Number" required>
-      <label>Email*</label>
-      <input type="email" id="email" placeholder="example@gmail.com" required>
-      <label>Password*</label>
-      <div style="position: relative;">
-        <input type="password" id="password" placeholder="Enter Password" required>
-        <span class="eye-btn" onclick="togglePass('password',this)" style="position:absolute; right:10px; top:10px; cursor:pointer;"> 👁️ </span>
+   <section class="hero" id="home">
+      <div class="hero-left">
+          <h1>“𝑨𝒇𝒇𝒐𝒓𝒅𝒂𝒃𝒍𝒆, 𝑺𝒂𝒇𝒆, 𝒂𝒏𝒅 𝑶𝒏-𝑻𝒊𝒎𝒆 𝑻𝒓𝒂𝒏𝒔𝒑𝒐𝒓𝒕𝒂𝒕𝒊𝒐𝒏.”</h1>
+          <p>𝑭𝒂𝒔𝒕, 𝑺𝒂𝒇𝒆 & 𝑨𝒇𝒇𝒐𝒓𝒅𝒂𝒃𝒍𝒆 𝑳𝒐𝒂𝒅𝒊𝒏𝒈 𝒂𝒏𝒅 𝑻𝒓𝒂𝒗𝒆𝒍 𝑺𝒆𝒓𝒗𝒊𝒄𝒆𝒔</p>
       </div>
-      <label>Confirm Password*</label>
-      <div style="position: relative;">
-        <input type="password" id="cpassword" placeholder="Confirm Password" required>
-        <span class="eye-btn" onclick="togglePass('cpassword',this)" style="position:absolute; right:10px; top:10px; cursor:pointer;"> 👁️ </span>
+      <div class="hero-right">
+          <div class="booking-box" id="bookingBox"  role="form" aria-label="Book vehicle transport">
+              <h3>Book Vehicle Transport</h3>
+              <input id="pickupCity" type="text" placeholder="Pickup City / Location" autocomplete="off">
+              <input id="deliveryCity" type="text" placeholder="Delivery City / Location" autocomplete="off">
+              <button id="bookingBtn" type="button">Book Now</button>
+          </div>
       </div>
-      <div id="passError" style="color:red; margin: 5px 0;"></div>
-      <div class="actions">
-        <button type="submit" id="submitBtn">Submit</button>
-        <button type="button" id="goLogin">Login</button>
-        <button type="button" id="backBtn">Back</button>
+   </section>
+   <div id="bookingModal" style="display:none;">
+     <div class="bmodel">
+        <div class="progress-bar">
+              <div class="step-indicator active" id="barStep1">1</div>
+              <div class="step-indicator" id="barStep2">2</div>
+              <div class="step-indicator" id="barStep3">3</div>
+          </div>
+          <div  id="bstep1" class="bstep">
+            <h2>Basic Details</h2>
+            <form id="Details">
+              <label>full Name*</label>
+              <input type="text" id="fullName" placeholder="Full Name" required>
+              <label>Mobile Number*</label>
+              <input type="text" id="mobile" placeholder="Mobile Number" required>
+              <label>Alternate Number*</label>
+              <input type="text" id="altMobile" placeholder="Alternate Number (optional)" required>
+              <select id="bvehicleetype">
+                <option value="">Select Vehicle Type</option>
+                <option>📦 ACE / DOST / PICKUP (1.5 TON)</option>
+                <option>🚛 EICHER 14FT (3.5 TON)</option>
+                <option>🚚 EICHER 17FT (5 TON)</option>
+                <option>🚛 EICHER 19FT (7 TON)</option>
+                <option>📦 20FT CONTAINER (6.5 TON)</option>
+                <option>🚚 EICHER PRO 22FT (10 TON)</option>
+                <option>📦 32FT CONTAINER (7/8 TON)</option>
+                <option>📦 32FT CONTAINER (16 TON)</option>
+                <option>📦 32FT CONTAINER (18 TON)</option>
+                <option>🚛 LORRY / TAURUS (18 TON)</option>
+                <option>🛻 20 / 32 / 40 FT All Side Open TRAILER</option>
+                <option>📮 PARTLOAD & PARCEL SERVICE</option> 
+             </select>
+             <div class="btn-row">
+                <button type="button" class="back-btn" id="back1">Back</button>
+                <button  id="next1">Next</button>
+             </div>
+           </form>
+         </div>
+         <div id="bstep2" class="bstep" style="display:none;">
+            <h2>ID Verification</h2>
+            <form id="Verification">
+              <select id="itemtype">
+                <option value=""> Select Goods Type </option>
+                <option>Industrial Machinery</option>
+                <option>Household Goods</option>
+                <option>Parcel Service / Luggage Transport (Not Available)</option>
+                <option>Fresh Fruits / Vegetables / Coconut</option>
+                <option>FMCG / Packed Food Products</option>
+                <option>Healthcare / Pharmacy Products / Medicines</option>
+                <option>Cement / Bricks / Sand</option>
+                <option>Chemicals Powder / Liquid Barrels</option>
+                <option>Agriculture Fertilizer (Not Available)</option>
+                <option>Electronic Goods / Home Appliances</option>
+                <option>Paper / Packaging / Printed Material</option>
+                <option>Electrical Transformer / Panels / Equipments</option>
+                <option>Solar / Battery / Inverter Products</option>
+                <option>Ceramic / Hardware Supplies</option>
+                <option>Electrical Wires / Cables</option>
+                <option>Books / Stationery / Toys / Gifts</option>
+                <option>Aluminium / Steel / Metal Products</option>
+                <option>Building Scaffolding / Construction Material</option>
+                <option>Paint / Houseware Supplies</option>
+                <option>Textile / Garments</option>
+                <option>Plastic / PVC / Rubber Pipes</option>
+                <option>Machine / Auto Parts</option>
+                <option>Exhibitions / Event Supplies</option>
+                <option>Furniture / Plywood / Laminates</option>
+                <option>Go Karts / Dirt Bikes / Bulk E.V</option>
+                <option>Pet Transport</option>
+                <option>ODC Consignment</option>
+                <option>Metal / Plastic Scrap</option>
+                <option>Plants / Pots</option>
+                <option>Spices / Dry Fruits</option>
+                <option>Manufacturing Plant Machines</option>
+                <option>One Scooter or Bike</option>
+                <option>Rice / Wheat / Grains</option>
+                <option>Books</option>
+                <option>Paper Roll / Packing Items</option>
+                <option>Others</option>
+                <option>Marble / Granite</option>
+                <option>Office Shifting</option>
+                <option>LED Sign Boards</option>
+                <option>Frozen Items</option>
+                <option>Old Servers / Computers / Laptops</option>
+                <option>Animal Feeds</option>
+                <option>Animals / Livestock</option>
+                <option>Drones / Robots</option>
+                <option>Wood Chips & Waste Items</option>
+                <option>Cable Drums / Wire Cable</option>
+                <option>We Do Not Provide Service For Frozen Items Goods</option>
+                <option>Copyright © TruckGuru LLP</option>
+             </select>
+             <label for="idType">Select ID</label>
+             <select id="idType">
+                <option value="">-- Select ID --</option>
+                <option value="aadhaa">Aadhaar Card</option>
+                <option value="voter">Voter ID</option>
+                <option value="dl">Driving Lincense</option>
+                <option value="pan">PAN Card</option>
+             </select>
+             <label for="idNumber">Enter ID Number</label>
+             <input type="text" id="idNumber" placeholder="Enter ID Number" required>
+             <small id="idError" class="error"></small>
+             <label>Select Date</label>
+             <input type="date" id="dateSelect" required>
+             <label>Upload ID Proof</label>
+             <input type="file" id="idUpload" required>
+             <label>Upload Your Image</label>
+             <input type="file" id="imgUpload" required>
+             <div class="btn-row">
+                <button type="button" class="back-btn" id="back2">Back</button>
+                <button  id="next2">Next</button>
+             </div>
+           </form>
+         </div>
+         <div  id="bstep3" class="bstep" style="display:none;">
+            <h2>Contact Verification</h2>
+            <form id="contact">
+              <input type="text" id="finalMobile" placeholder="Enter Mobile Number" required>
+              <button type="button" id="sendOtp">Send OTP</button>
+              <div class="otp-container">
+                <input type="text" maxlength="1" class="otp-input" id="mobileOtp1">
+                <input type="text" maxlength="1" class="otp-input" id="mobileOtp2">
+                <input type="text" maxlength="1" class="otp-input" id="mobileOtp3">
+                <input type="text" maxlength="1" class="otp-input" id="mobileOtp4">
+                <input type="text" maxlength="1" class="otp-input" id="mobileOtp5">
+                <input type="text" maxlength="1" class="otp-input" id="mobileOtp6">
+              </div>
+              <div class="btn-row">
+                <button type="button" class="back-btn" id="back3">Back</button>
+                <button type="button" id="bsubmitBtn">Submit</button>
+             </div>
+           </form>
+         </div>
+         <div class="bstep" id="bstep4" style="display:none;">
+            <h2>Thank You!</h2>
+            <p style="text-align:center;font-size:18px;">Bharat Movers<br>“ आपके उज्ज्वल भविष्य की हार्दिक कामना करता है।”</p>
+            <button type="button" style="width:100%;margin-top:10px;" id="closebtn">Close</button>
+         </div>
       </div>
-    </form>
-  </div>
-</div>
+   </div>
 
-<div id="loginModal" class="modal">
-  <div class="modal-contents"><br>
-    <h2>Login</h2><br>
-    <form id="loginForm">
-      <div class="field">
-        <label>Email*</label>
-        <input type="email" id="loginEmail" required>
-      </div>
-      <div class="field">
-        <label>Password*</label>
-        <div style="display:flex; align-items:center;">
-          <input type="password" id="loginPassword" required style="flex:1;">
-          <span class="eye-btn" onclick="togglePass('loginPassword',this)" style="cursor:pointer; margin-left:8px;"> 👁️‍🗨️/ </span>
-        </div>
-      </div>
-      <div class="actions">
-        <button type="submit">Login</button>
-        <button type="button" id="backLogin">Back</button>
-        <button type="button" id="forgotBtn">Forgot Password</button>
-      </div>
-    </form>
-  </div>
-</div>
-<div id="forgotModal" class="modal">
-  <div class="modal-contents"><br>
-    <h2>Forgot Password</h2><br>
-    <form id="forgotForm">
-      <div class="field">
-        <label>Enter your registered email</label>
-        <input type="email" id="forgotEmail" required>
-      </div>
-      <div class="actions">
-        <button type="submit">Send Reset Link</button>
-        <button type="button" id="backForgot">Back</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-
-  <section class="hero" id="home">
-    <div class="hero-left">
-      <h1>“𝑨𝒇𝒇𝒐𝒓𝒅𝒂𝒃𝒍𝒆, 𝑺𝒂𝒇𝒆, 𝒂𝒏𝒅 𝑶𝒏-𝑻𝒊𝒎𝒆 𝑻𝒓𝒂𝒏𝒔𝒑𝒐𝒓𝒕𝒂𝒕𝒊𝒐𝒏.”</h1>
-      <p>𝑭𝒂𝒔𝒕, 𝑺𝒂𝒇𝒆 & 𝑨𝒇𝒇𝒐𝒓𝒅𝒂𝒃𝒍𝒆 𝑳𝒐𝒂𝒅𝒊𝒏𝒈 𝒂𝒏𝒅 𝑻𝒓𝒂𝒗𝒆𝒍 𝑺𝒆𝒓𝒗𝒊𝒄𝒆𝒔</p>
-   </div>
-   <div class="hero-right">
-      <div class="booking-box" id="bookingBox"  role="form" aria-label="Book vehicle transport">
-        <h3>Book Vehicle Transport</h3>
-        <input type="text" id="pickup" placeholder="Pickup City / Location" autocomplete="off">
-        <input type="text" id="delivery" placeholder="Delivery City / Location" autocomplete="off">
-        <button id="bookNowBtn">Book Now</button>
-     </div>
-   </div>
- </section>
-
- <section class="card-container">
-   <div class="service-card">
-     <div class="service-card-inner">
-       <div class="service-card-front">
-         <i class="fas fa-truck-moving"></i>
-         <p>Hire Truck</p>
-       </div>
-       <div class="service-card-back">      
-          <h3>About :</h3>
-          <p>आपका सामान सुरक्षित और तेज़ी से पहुंचाने वाली आसान और विश्वसनीय ट्रक बुकिंग सेवा।</p>
-          <h5>"आपका भरोसेमंद सामान साथी।"</h5>
-          <p>सुरक्षित और तेज़ डिलीवरी, हर बार, हर जगह।</p>
+   <section class="card-container">
+     <div class="service-card">
+        <div class="service-card-inner">
+          <div class="service-card-front">
+            <i class="fas fa-truck-moving"></i>
+            <p>Hire Truck</p>
+         </div>
+         <div class="service-card-back">      
+            <h3>About :</h3>
+            <p>आपका सामान सुरक्षित और तेज़ी से पहुंचाने वाली आसान और विश्वसनीय ट्रक बुकिंग सेवा।</p>
+            <h5>"आपका भरोसेमंद सामान साथी।"</h5>
+            <p>सुरक्षित और तेज़ डिलीवरी, हर बार, हर जगह।</p>
+         </div>
        </div>
      </div>
-   </div>
-   <div class="service-card">
-     <div class="service-card-inner">
-       <div class="service-card-front">
-         <i class="fas fa-road"></i>
-         <p>Transport Services</p>
-       </div>
-       <div class="service-card-back">      
-          <h3>About :</h3>
-          <p>ग्राहक आसानी से अपने सामान के परिवहन के लिए विभिन्न प्रकार के ट्रक बुक कर सकते हैं।</p>
-          <h4 id="cityCount">1800+</h4><p>Cities</p>
-          <h4 id="truckCount">100+</h4><p>Trucks</p>
-       </div>
-     </div>
-   </div>
-   <div class="service-card">
-     <div class="service-card-inner">
-       <div class="service-card-front">
-          <i class="fas fa-people-carry"></i>
-          <p>Transporter</p>  
-       </div>
-       <div class="service-card-back">      
-          <h3>About :</h3>
-          <p>“Bharat Movers के साथ आज ही जुड़ें और तुरंत सुरक्षित ट्रांसपोर्ट पाएं!”</p>
-          <h4 id="HappyCustomersCount">900+</h4><p>Happy Customers</p>
-          <h4 id="TripsCompletedCount">1200+</h4><p>Trips Completed</p>
+     <div class="service-card">
+        <div class="service-card-inner">
+          <div class="service-card-front">
+            <i class="fas fa-road"></i>
+            <p>Transport Services</p>
+          </div>
+          <div class="service-card-back">      
+            <h3>About :</h3>
+            <p>ग्राहक आसानी से अपने सामान के परिवहन के लिए विभिन्न प्रकार के ट्रक बुक कर सकते हैं।</p>
+            <h4 id="cityCount">1800+</h4><p>Cities</p>
+            <h4 id="truckCount">100+</h4><p>Trucks</p>
+          </div>
        </div>
      </div>
-   </div>
-   <div class="service-card">
-     <div class="service-card-inner">
-       <div class="service-card-front">
-          <i class="fas fa-car-side"></i>
-          <p>Type Vehicle</p>
-       </div>
-       <div class="service-card-back">      
-          <h3>About :</h3>
-          <p>“Bharat Movers पर <em>60+ प्रकार के ट्रक उपलब्ध हैं</em>, और <em>687+ वाहन मालिक हमारे साथ जुड़ चुके हैं।”</em></p><br>
-          <h5 id="bookScrollBtn" style="cursor:pointer; color:#ff4500;">बस एक क्लिक में बुक करें!</h5>
-       </div>
-     </div>
-   </div>
-   <div class="service-card">
-     <div class="service-card-inner">
-       <div class="service-card-front">
-          <i class="fa-solid fa-location-dot"></i>
-          <p>location</p> 
-       </div>
-       <div class="service-card-back">      
-          <h3>About :</h3>
-          <p>“7000+ शहरों, इंडस्ट्री एरिया और गांवों में ट्रांसपोर्ट सर्विस available है।”</p><br>
-          <h5>“आपका साथ, हमारा विश्वास।”</h5>
-          <p><em>“Bharat Movers: </em>सभी शहरों तक भरोसेमंद ट्रांसपोर्ट सर्विस प्रदान करता है।”</p>
-       </div>
-     </div>
-   </div>
- </section>
-
- <section class="cite-section">
-    <h2>Top Cities</h2>
-    <div class="city-grid">
-      <div class="state-column">
-        <ul>
-          <li>Patna</li>
-          <li>Gaya</li>
-          <li>Bhagalpur</li>
-          <li>Muzaffarpur</li>
-        </ul>
+     <div class="service-card">
+        <div class="service-card-inner">
+              <div class="service-card-front">
+                 <i class="fas fa-people-carry"></i>
+                 <p>Transporter</p>  
+              </div>
+              <div class="service-card-back">      
+                 <h3>About :</h3>
+                 <p>“Bharat Movers के साथ आज ही जुड़ें और तुरंत सुरक्षित ट्रांसपोर्ट पाएं!”</p>
+                 <h4 id="HappyCustomersCount">900+</h4><p>Happy Customers</p>
+                 <h4 id="TripsCompletedCount">1200+</h4><p>Trips Completed</p>
+              </div>
+           </div>
       </div>
-      <div class="state-column">
-        <ul>
-          <li>Kolkata</li>
-          <li>Darjeeling</li>
-          <li>Durgapur</li>
-          <li>Siliguri</li>
-        </ul>
+      <div class="service-card">
+          <div class="service-card-inner">
+              <div class="service-card-front">
+                 <i class="fas fa-car-side"></i>
+                 <p>Type Vehicle</p>
+              </div>
+              <div class="service-card-back">      
+                  <h3>About :</h3>
+                  <p>“Bharat Movers पर <em>60+ प्रकार के ट्रक उपलब्ध हैं</em>, और <em>687+ वाहन मालिक हमारे साथ जुड़ चुके हैं।”</em></p><br>
+                  <h5 id="bookScrollBtn" style="cursor:pointer; color:#ff4500;">बस एक क्लिक में बुक करें!</h5>
+              </div>
+           </div>
       </div>
-    </div>
+      <div class="service-card">
+          <div class="service-card-inner">
+              <div class="service-card-front">
+                 <i class="fa-solid fa-location-dot"></i>
+                 <p>location</p> 
+              </div>
+              <div class="service-card-back">      
+                 <h3>About :</h3>
+                 <p>“7000+ शहरों, इंडस्ट्री एरिया और गांवों में ट्रांसपोर्ट सर्विस available है।”</p><br>
+                 <h5>“आपका साथ, हमारा विश्वास।”</h5>
+                 <p><em>“Bharat Movers: </em>सभी शहरों तक भरोसेमंद ट्रांसपोर्ट सर्विस प्रदान करता है।”</p>
+              </div>
+           </div>
+      </div>
+   </section>
+   <section class="how-section">
+      <h2>How it Works ?</h2><br><br>
+      <div class="steps">
+          <div class="step">
+              <div class="content">
+                 <i class="fa-solid fa-headset"></i>
+                 <p>1. Book Your Truck</p>
+                 <p>Through Website, App & Call Center</p>
+              </div>
+          </div>
+          <div class="line dotted"></div>
+          <div class="step"><br>
+              <i class="fa-solid fa-truck-fast"></i>
+              <div class="content">
+                 <p>2. Our Agent Finds</p>
+                 <p>Nearest Truck For You</p>
+              </div>
+          </div>
+          <div class="line dotted"></div>
+          <div class="step">
+              <i class="fa-solid fa-envelope-open-text"></i>
+              <div class="content">
+                 <p>3. Get Updates & Notifications</p>
+                 <p>Via SMS, WhatsApp & Email</p>
+             </div>
+          </div>
+      </div>
   </section>
-  <section class="how-section">
-    <h2>How it Works ?</h2><br><br>
-    <div class="steps">
-     <div class="step">
-       <div class="content">
-         <i class="fa-solid fa-headset"></i>
-         <p>1. Book Your Truck</p>
-         <p>Through Website, App & Call Center</p>
-       </div>
-     </div>
-     <div class="line dotted"></div>
-     <div class="step"><br>
-       <i class="fa-solid fa-truck-fast"></i>
-       <div class="content">
-          <p>2. Our Agent Finds</p>
-          <p>Nearest Truck For You</p>
-       </div>
-     </div>
-     <div class="line dotted"></div>
-     <div class="step">
-       <i class="fa-solid fa-envelope-open-text"></i>
-       <div class="content">
-          <p>3. Get Updates & Notifications</p>
-          <p>Via SMS, WhatsApp & Email</p>
-       </div>
-     </div>
-   </div>
- </section>
-
- <footer class="footer" id="contact">
-    <div class="footer-box">
-      <h3>About Us</h3>
-      <p>Bharat Movers connects customers and vehicle owners with fast, safe, and affordable transport solutions nationwide.</p>
-    </div>
-    <div class="footer-box">
-      <h3>Services</h3>
-      <ul>
-        <li>Online Truck Booking</li>
-        <li>Logistics Service</li>
-        <li>Transportation Services</li>
-        <li>Express Cargo</li>
-        <li>Truck Rentals</li>
-      </ul>
-    </div>
-    <div class="footer-box">
-      <h3>Contact</h3>
-      <ul>
-        <li>📞 Phone: 72020 45678</li>
-        <li>📱 WhatsApp: 72020 45678</li>
-        <li>✉️ Email: cs@bharatmovers.in</li>
-      </ul>
-    </div>
+  <footer class="footer" id="contact">
+      <div class="footer-box">
+         <h3>About Us</h3>
+         <p>Bharat Movers connects customers and vehicle owners with fast, safe, and affordable transport solutions nationwide.</p>
+      </div>
+      <div class="footer-box">
+          <h3>Services</h3>
+          <ul>
+             <li>Online Truck Booking</li>
+             <li>Logistics Service</li>
+             <li>Transportation Services</li>
+             <li>Express Cargo</li>
+             <li>Truck Rentals</li>
+          </ul>
+      </div>
+      <div class="footer-box">
+         <h3>Contact</h3>
+          <ul>
+             <li>📞 Phone: 72020 45678</li>
+             <li>📱 WhatsApp: 72020 45678</li>
+             <li>✉️ Email: cs@bharatmovers.in</li>
+          </ul>
+      </div>
   </footer>
   <div class="footer-bottom">
-    <div class="social-icons" aria-hidden="true">
-      <a><i class="fa-brands fa-facebook"></i></a>
-      <a href=""><i class="fa-brands fa-twitter"></i></a>
-      <a href=""><i class="fa-brands fa-whatsapp"></i></a>
-      <a href=""><i class="fa-brands fa-instagram"></i></a>
-      <a href=""><i class="fa-solid fa-envelope-open"></i></a>
-    </div>
-    <p>© 2025 Bharat Movers LLP("Your trust — our responsibility.")</p>
+      <div class="social-icons" aria-hidden="true">
+         <a href=""><i class="fa-brands fa-twitter"></i></a>
+         <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+         <a href=""><i class="fa-brands fa-instagram"></i></a>
+         <a href=""><i class="fa-solid fa-envelope-open"></i></a>
+      </div>
+      <p>© 2025 Bharat Movers LLP("Your trust — our responsibility.")</p>
   </div>
+  <script src="script.js" defer></script>
 </body>
 </html>
