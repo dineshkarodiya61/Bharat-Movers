@@ -258,22 +258,15 @@ document.addEventListener("DOMContentLoaded", () => {
     resetBooking(); 
   });
 
-
-document.getElementById("bookScrollBtn").addEventListener("click", function () {
-
-    // Smooth Scroll to Booking Box
+  document.getElementById("bookScrollBtn").addEventListener("click", function () {
     document.getElementById("bookingBox").scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
-
-    // थोड़ी देर बाद Focus डालो (smooth scroll complete होने पर)
-    setTimeout(() => {
-        document.getElementById("pickupCity").focus();
-    }, 700); // smooth scroll time
-});
-
-
+      behavior: "smooth",
+      block: "center"
+   });
+   setTimeout(() => {
+      document.getElementById("pickupCity").focus();
+    }, 700); 
+  });
 
 });
 
