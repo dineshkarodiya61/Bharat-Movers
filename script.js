@@ -267,7 +267,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("pickupCity").focus();
     }, 700); 
   });
-
 });
 
 const accountModal = document.getElementById('accountModal');

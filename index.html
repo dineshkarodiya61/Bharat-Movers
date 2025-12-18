@@ -14,20 +14,20 @@
             <ul id="navList">
                 <li><a href="">Home</a></li>
                 <li><a href="">About</a></li>
-                <li><a>Type Vehicle</a></li>
+                <li><a class="Vehicle">Type Vehicle</a></li>
                 <li><a>Location</a></li>
-                <li><a class="Account" id="createAccountBtn">Create Account</a></li>
-                <li><a class="Login" id="loginModalBtn">Login</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#WorkProcess">Work Process</a></li>
+                <li><a href="#contacts">Contact</a></li>
+                <li><button class="Account" id="createAccountBtn">Create Account</button></li>
+                <li><button class="Login" id="loginModalBtn">Login</button></li>
             </ul>
            <div class="menu-toggle" id="menuToggle">
              <div></div><div></div><div></div>
            </div>
         </nav>
-   </header>
-
+    </header>
     <div id="accountModal" class="modal">
-      <div class="modal-contents"><br>
+       <div class="modal-contents"><br>
           <h2>Create Account</h2>
           <form id="accountForm">
               <label>First Name*</label>
@@ -93,11 +93,9 @@
           </form>
       </div>
    </div>
-
    <section class="hero" id="home">
       <div class="hero-left">
           <h1>“𝑨𝒇𝒇𝒐𝒓𝒅𝒂𝒃𝒍𝒆, 𝑺𝒂𝒇𝒆, 𝒂𝒏𝒅 𝑶𝒏-𝑻𝒊𝒎𝒆 𝑻𝒓𝒂𝒏𝒔𝒑𝒐𝒓𝒕𝒂𝒕𝒊𝒐𝒏.”</h1>
-          <p>𝑭𝒂𝒔𝒕, 𝑺𝒂𝒇𝒆 & 𝑨𝒇𝒇𝒐𝒓𝒅𝒂𝒃𝒍𝒆 𝑳𝒐𝒂𝒅𝒊𝒏𝒈 𝒂𝒏𝒅 𝑻𝒓𝒂𝒗𝒆𝒍 𝑺𝒆𝒓𝒗𝒊𝒄𝒆𝒔</p>
       </div>
       <div class="hero-right">
           <div class="booking-box" id="bookingBox"  role="form" aria-label="Book vehicle transport">
@@ -248,7 +246,6 @@
          </div>
       </div>
    </div>
-
   <section class="service-container">
      <div class="service-card">
         <div class="service-inner">
@@ -335,35 +332,106 @@
         </div>
      </div>
    </section>
-   <section class="how-section">
-      <h2>How it Works ?</h2><br><br>
-      <div class="steps">
-          <div class="step">
-              <div class="content">
-                 <i class="fa-solid fa-headset"></i>
-                 <p>1. Book Your Truck</p>
-                 <p>Through Website, App & Call Center</p>
-              </div>
+   <section class="strength-section">
+     <h2>Our Strengths and Advantages</h2>
+     <p class="desc">
+        We are very passionate about what we do! We have everything that all is required
+        to move your goods safely and damage-free. So, choosing us means picking the
+        smartest way to streamline the moving operations in your business and focus on
+        your core operations.
+     </p>
+     <div class="strength-grid">
+        <div>
+           <div class="strength-box">
+             <h4>Full Load Services</h4>
+             <p>We provide Full Truck load transportation services with varied type of trucks available with the click of a button.</p>
+           </div><br><br>
+           <div class="strength-box">
+              <h4>Transparent Pricing</h4>
+              <p>With our fare calculator, we instantaneously give you best possible rates online.</p>
+           </div>
+        </div>
+        <div class="phone-mockup">
+           <img src="imag/image copy.png" alt="App Preview" />
+        </div>
+        <div>
+           <div class="strength-box">
+              <h4>Quick & Easy Portal</h4>
+              <p>Hiring a truck is now just a click away, through our hassle free online booking system.</p>
+           </div><br><br>
+           <div class="strength-box">
+             <h4>Advance Booking</h4>
+             <p>Our vehicle availability is guaranteed on daily/weekly/monthly basis to ensure on-time reporting.</p>
+           </div>
+        </div>
+     </div>
+   </section>
+   <section class="how-section" id="WorkProcess">
+     <h2>How it Works ?</h2>
+     <div class="steps">
+        <div class="step">
+          <i class="fa-solid fa-headset"></i>
+          <div class="content">
+             <h3>1. Book Your Truck</h3>
+             <p>Website, App & Call Center</p>
           </div>
-          <div class="line dotted"></div>
-          <div class="step"><br>
-              <i class="fa-solid fa-truck-fast"></i>
-              <div class="content">
-                 <p>2. Our Agent Finds</p>
-                 <p>Nearest Truck For You</p>
-              </div>
-          </div>
-          <div class="line dotted"></div>
-          <div class="step">
-              <i class="fa-solid fa-envelope-open-text"></i>
-              <div class="content">
-                 <p>3. Get Updates & Notifications</p>
-                 <p>Via SMS, WhatsApp & Email</p>
-             </div>
-          </div>
-      </div>
+        </div>
+        <div class="line"></div>
+        <div class="step">
+           <i class="fa-solid fa-truck-fast"></i>
+           <div class="content">
+           <h3>2.Our Agent Finds</h3>
+           <p>Nearest Truck For You.</p>
+           </div>
+         </div>
+         <div class="line"></div>
+         <div class="step">
+           <i class="fa-solid fa-envelope-open-text"></i>
+           <div class="content">
+             <h3>3. Get Updates</h3>
+             <p>SMS, WhatsApp & Email</p>
+           </div>
+        </div>
+     </div>
+  </section> 
+  <section class="cities-section">
+     <h2>Popular Cities We Serve</h2>
+     <div class="cities">
+        <div class="city">
+          <i class="fa-solid fa-landmark"></i>
+          <span>Mumbai</span>
+        </div>
+        <div class="city">
+            <i class="fa-solid fa-building-columns"></i>
+            <span>Pune</span>
+        </div>
+        <div class="city">
+            <i class="fa-solid fa-city"></i>
+            <span>Bangalore</span>
+        </div>
+        <div class="city">
+           <i class="fa-solid fa-gopuram"></i>
+           <span>Chennai</span>
+        </div>
+        <div class="city">
+           <i class="fa-solid fa-landmark-dome"></i>
+           <span>Ahmedabad</span>
+        </div>
+        <div class="city">
+           <i class="fa-solid fa-kaaba"></i>
+           <span>Kolkata</span>
+        </div>
+        <div class="city">
+           <i class="fa-solid fa-city"></i>
+           <span>Hyderabad</span>
+        </div>
+        <div class="city">
+          <i class="fa-solid fa-archway"></i>
+          <span>Delhi NCR</span>
+        </div>
+     </div>
   </section>
-  <footer class="footer" id="contact">
+  <footer class="footer" id="contacts">
       <div class="footer-box">
          <h3>About Us</h3>
          <p>Bharat Movers connects customers and vehicle owners with fast, safe, and affordable transport solutions nationwide.</p>
@@ -397,5 +465,6 @@
       <p>© 2025 Bharat Movers LLP("Your trust — our responsibility.")</p>
   </div>
   <script src="script.js" defer></script>
+  <script src="location.js" defer></script>
 </body>
 </html>
